@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build",
+    "lib": ["es2018", "dom"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "baseUrl": "./src",
+    "allowSyntheticDefaultImports": true,
+    "noErrorTruncation": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/index.ts",
+    "drizzle.config.ts"
+  ],
+  "exclude": ["./coverage", "./dist", "__tests__", "jest.config.js"]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "basiccrudreigenieria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "files": [
+    "build/src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node src/index.ts",
+    "watch": "nodemon src/index.ts",
+    "generate-migrations": "drizzle-kit generate",
+    "execute-migrations": "drizzle-kit migrate",
+    "migrate": "yarn run generate-migrations && yarn run execute-migrations",
+    "build": "tsc",
+    "start": "yarn build && node build/src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
+    "concurrently": "^9.1.2",
+    "drizzle-kit": "^0.30.4",
+    "module-alias": "^2.2.3",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@types/pg": "^8.11.11",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.3",
+    "express": "^4.21.2",
+    "http-status-codes": "^2.3.0",
+    "joi": "^17.13.3",
+    "pg": "^8.13.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "engines": {
+    "node": "22.13.1"
+  }
+}
