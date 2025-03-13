@@ -4,4 +4,5 @@ interface Product {
   description: string;
   price: number;
   stock: number;
+  created_at: string;
 }

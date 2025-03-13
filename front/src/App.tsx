@@ -2,7 +2,8 @@ import { Route, Routes } from "react-router";
 import MainLayout from "@/components/main-layout";
 import Home from "@/components/views/home";
 import ProductsTableView from "./components/views/products-table";
-
+import ClientsTableView from "./components/views/clients-table";
+import EmployeesTableView from "./components/views/employees-table";
 function App() {
   return (
     <Routes>
@@ -13,8 +14,8 @@ function App() {
             <Route path=":id" element={<div>Product Detail</div>} />
           </Route>
           <Route path="/sales" element={<div>Sales</div>} />
-          <Route path="/clients" element={<div>Clients</div>} />
-          <Route path="/employees" element={<div>Employees</div>} />
+          <Route path="/clients" element={<ClientsTableView />} />
+          <Route path="/employees" element={<EmployeesTableView />} />
           <Route path="/shop" element={<div>Shop</div>} />
           <Route path="/inventory" element={<div>Inventory</div>} />
         </Route>
