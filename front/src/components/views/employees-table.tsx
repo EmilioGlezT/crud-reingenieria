@@ -28,7 +28,8 @@ import {
       name: "",
       email: "",
       phone: "",
-      role: ""
+      role: "",
+      hire_date: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
@@ -73,7 +74,7 @@ import {
         // 2. Revalidación de datos desde el servidor
         // mutate("/clients");
   
-        setFormData({ name: "", email: "", phone: "", role: "" });
+        setFormData({ name: "", email: "", phone: "", role: "", hire_date: "" });
       } catch (err) {
         setSubmitError(err instanceof Error ? err.message : "Error desconocido");
       } finally {
@@ -90,7 +91,7 @@ import {
 
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 mt-50">
       {/* Formulario de Registro */}
       <div className="border p-6 rounded-lg shadow-sm">
         <h2 className="text-xl font-bold mb-4">Registrar Nuevo Empleado</h2>
@@ -142,6 +143,17 @@ import {
               required
             />
           </div>
+          <div className="space-y-2">
+            <label className="block text-sm font-medium">Hire date</label>
+            <input
+              type="date"
+              name="hire_date"
+              value={formData.hire_date}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
           
           <div className="col-span-2">
             <button
@@ -169,7 +181,8 @@ import {
             <TableHead>Nombre</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Phone</TableHead>
-            <TableHead className="text-right">Address</TableHead>
+            <TableHead className="text-right">Rol</TableHead>
+            <TableHead className="text-right">Hire date</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -178,8 +191,9 @@ import {
               <TableCell>{employee.id}</TableCell>
               <TableCell>{employee.name}</TableCell>
               <TableCell>{employee.email}</TableCell>
-              <TableCell>${employee.phone}</TableCell>
+              <TableCell>{employee.phone}</TableCell>
               <TableCell className="text-right">{employee.role}</TableCell>
+              <TableCell className="text-right">{employee.hire_date}</TableCell>
             </TableRow>
           ))}
         </TableBody>

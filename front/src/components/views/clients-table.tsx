@@ -90,7 +90,8 @@ import {
 
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 mt-50">
+
       {/* Formulario de Registro */}
       <div className="border p-6 rounded-lg shadow-sm">
         <h2 className="text-xl font-bold mb-4">Registrar Nuevo Cliente</h2>
@@ -178,7 +179,7 @@ import {
               <TableCell>{client.id}</TableCell>
               <TableCell>{client.name}</TableCell>
               <TableCell>{client.email}</TableCell>
-              <TableCell>${client.phone}</TableCell>
+              <TableCell>{client.phone}</TableCell>
               <TableCell className="text-right">{client.address}</TableCell>
             </TableRow>
           ))}
