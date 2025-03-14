@@ -8,7 +8,6 @@ interface Product {
   name: string;
   description: string;
   price: number;
-  stock: number;
 }
 function ProductDetailsView() {
   const { id } = useParams<{ id: string }>();
@@ -26,26 +25,30 @@ function ProductDetailsView() {
         id: product.id 
       });
     }
-  }, [product]);
+  }, [product]);  
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
-    console.log("FORM DATA", formData)
     try {
-      const response = await fetch(`http://localhost:3000/product/${id}`, {
+
+      const updatePayload = {
+        id: Number(id),
+        name: formData.name,
+        description: formData.description,
+        price: Number(formData.price)
+      };
+      console.log("UPDATE PAYLOAD", updatePayload)
+      const response = await fetch(`http://localhost:3000/product/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...formData,
-          id: Number(id) 
-        }),
+        body: JSON.stringify(updatePayload),
       });
 
-      console.log("respuesta", response)
+      
       if (!response.ok) {
         throw new Error("Error actualizando producto");
       }
@@ -118,7 +121,7 @@ function ProductDetailsView() {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label className="block mb-2">Stock</label>
           <input
             type="number"
@@ -126,7 +129,7 @@ function ProductDetailsView() {
             onChange={(e) => setFormData({...formData, stock: Number(e.target.value)})}
             className="w-full p-2 border rounded"
           />
-        </div>
+        </div> */}
 
         <div className="flex gap-4">
           <button
