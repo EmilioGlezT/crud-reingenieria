@@ -214,3 +214,59 @@ export const deleteClient = async (req: Request, res: Response) => {
       });
   }
 };
+
+
+
+/**
+ * @swagger
+ * /client/{id}:
+ *   get:
+ *     summary: Obtener un cliente por su ID
+ *     tags:
+ *       - Clientes
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: number
+ *         description: ID del cliente a obtener.
+ *     responses:
+ *       200:
+ *         description: Cliente obtenido correctamente.
+ *       400:
+ *         description: Solicitud incorrecta.
+ *       404:
+ *         description: Cliente no encontrado.
+ *       500:
+ *         description: Error interno del servidor.
+ */
+export const getClientById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const [client] = await db
+      .select()
+      .from(clientTable)
+      .where(eq(clientTable.id, parseInt(id)));
+
+    if (!client) {
+      res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Client not found" });
+      return; // Finaliza la ejecución después de enviar la respuesta
+    }
+
+    res
+      .status(StatusCodes.OK)
+      .json(client);
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({
+        message: "Failed to fetch client",
+        error: error,
+      });
+  }
+};
+

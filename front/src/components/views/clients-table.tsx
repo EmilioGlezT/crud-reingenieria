@@ -10,6 +10,7 @@ import {
   import { fetcher } from "@/api";
   import { useState } from "react";
   import useSWR, { mutate } from "swr";
+import { Link } from "react-router";
 
 
   
@@ -52,7 +53,7 @@ import {
       e.preventDefault();
       setIsSubmitting(true);
       setSubmitError(null);
-      console.log(formData)
+      console.log("FOOORM DATA", formData)
       try {
         const response = await fetch("http://localhost:3000/client", {
           method: "POST",
@@ -176,7 +177,11 @@ import {
         <TableBody>
           {clients.map((client: Client) => (
             <TableRow key={client.id}>
-              <TableCell>{client.id}</TableCell>
+              <TableCell>
+              <Link to={`/clients/${client.id}`} className="text-blue-500 hover:underline">
+                {client.id}
+              </Link>
+              </TableCell>
               <TableCell>{client.name}</TableCell>
               <TableCell>{client.email}</TableCell>
               <TableCell>{client.phone}</TableCell>
