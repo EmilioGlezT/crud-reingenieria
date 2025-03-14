@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import useSWR, { mutate } from "swr";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { fetcher } from "@/api";
 
@@ -169,6 +170,11 @@ function ProductsTableView() {
       <TableBody>
         {products.map((product: Product) => (
           <TableRow key={product.id}>
+            <TableCell>
+              <Link to={`/products/${product.id}`} className="text-blue-500 hover:underline">
+                {product.id}
+              </Link>
+            </TableCell>
             <TableCell>{product.id}</TableCell>
             <TableCell>{product.name}</TableCell>
             <TableCell>{product.description}</TableCell>
