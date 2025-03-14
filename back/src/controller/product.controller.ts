@@ -279,3 +279,57 @@ export const updateInventory = async (req: Request, res: Response) => {
       });
   }
 };
+
+
+/**
+ * @swagger
+ * /product/{id}:
+ *   get:
+ *     summary: Obtener un producto por su ID
+ *     tags:
+ *       - Productos
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: number
+ *         description: ID del producto a obtener.
+ *     responses:
+ *       200:
+ *         description: Producto obtenido correctamente.
+ *       404:
+ *         description: Producto no encontrado.
+ *       400:
+ *         description: Solicitud incorrecta.
+ *       500:
+ *         description: Error interno del servidor.
+ */
+export const getProductById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const [product] = await db
+      .select()
+      .from(productTable)
+      .where(eq(productTable.id, parseInt(id)));
+
+    if (!product) {
+      res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Product not found" });
+      return; // Finaliza la ejecución después de enviar la respuesta
+    }
+
+    res
+      .status(StatusCodes.OK)
+      .json(product);
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({
+        message: "Failed to fetch product",
+        error: error,
+      });
+  }
+};
