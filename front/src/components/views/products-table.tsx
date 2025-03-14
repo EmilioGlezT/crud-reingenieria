@@ -65,7 +65,7 @@ function ProductsTableView() {
       console.log("RESPUESTA", response)
       if (!response.ok) {
         console.log(response)
-        throw new Error("Error al registrar cliente");
+        throw new Error("Error al registrar producto");
       }
 
       const newClient = await response.json();
@@ -150,7 +150,7 @@ function ProductsTableView() {
             disabled={isSubmitting}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
           >
-            {isSubmitting ? "Registrando..." : "Registrar Cliente"}
+            {isSubmitting ? "Registrando..." : "Registrar Producto"}
           </button>
           {submitError && <p className="text-red-500 mt-2">{submitError}</p>}
         </div>

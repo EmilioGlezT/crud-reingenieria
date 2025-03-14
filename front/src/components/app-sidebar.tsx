@@ -44,11 +44,6 @@ const items = [
     url: "/shop",
     icon: ShoppingCart,
   },
-  {
-    title: "Inventory",
-    url: "/inventory",
-    icon: CheckCircle2,
-  },
 ];
 
 export function AppSidebar() {
